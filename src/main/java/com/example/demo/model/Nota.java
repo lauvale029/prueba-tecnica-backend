@@ -16,7 +16,8 @@ public class Nota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double valor;
+    //private Double valor;
+    private Double calificacion;
     private LocalDate fechaRegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)

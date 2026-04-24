@@ -48,7 +48,14 @@ public class NotaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaNota);
     }
 
-    // 2. Listar notas por alumno en cada materia
+    // 2. Método general para cargar TODAS las notas 
+    @GetMapping
+    public ResponseEntity<List<Nota>> listarTodasLasNotas() {
+        List<Nota> notas = notaRepository.findAll();
+        return ResponseEntity.ok(notas);
+    }
+
+    // 3. Listar notas por alumno en cada materia
     @GetMapping("/alumno/{alumnoId}/materia/{materiaId}")
     public ResponseEntity<List<Nota>> listarNotasPorAlumnoYMateria(
             @PathVariable Long alumnoId,
