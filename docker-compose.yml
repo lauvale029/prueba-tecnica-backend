@@ -13,5 +13,34 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_prueba_tecnica
+    ports:
+      - "8082:8082"
+    environment:
+      
+      DB_URI: jdbc:postgresql://db:5432/escuela_db 
+      DB_USER: admin
+      DB_PASSWORD: adminpassword
+      DB_DRIVER: org.postgresql.Driver
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ../frontend 
+      dockerfile: Dockerfile
+      args:
+        
+        - VITE_API_URL=http://localhost:8082/api 
+    container_name: front_prueba_tecnica
+    ports:
+      - "80:80" # Se podrá ver la app web entrando simplemente a http://localhost
+    depends_on:
+      - backend
+
 volumes:
   pgdata:

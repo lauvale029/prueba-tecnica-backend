@@ -27,5 +27,4 @@ public class Materia {
     @JsonIgnore
     private List<Nota> notas;
 
-    // TODO: Genera los Getters, Setters y constructores vacíos usando tu IDE.
 }
